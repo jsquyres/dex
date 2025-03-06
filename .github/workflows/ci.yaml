@@ -80,27 +80,9 @@ jobs:
       # Ensure that generated files were committed.
       # It can help us determine, that the code is in the intermediate state, which should not be tested.
       # Thus, heavy jobs like creating a kind cluster and testing / linting will be skipped.
-      - name: JMS 1
+      - name: Verify
         run: |
-          echo JMS PATH is:
-          echo $PATH
-
-      - name: JMS 2
-        run: |
-          which -a protoc
-
-      - name: JMS 3
-        run: |
-          for item in $(which -a protoc); do echo $item; ls -l $item;
-          done
-
-      - name: JMS 4
-        run: |
-          protoc --help
-
-      - name: JMS 5
-        run: |
-         make generate-proto
+          make generate-proto
           make verify
 
       - name: Start services
