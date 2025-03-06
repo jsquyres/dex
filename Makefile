@@ -121,10 +121,6 @@ verify-go-mod: go-mod-tidy ## Check that go.mod and go.sum formatted according t
 
 ##@ Test and Lint
 
-jms:
-	echo PATH is: $(PATH)
-	which protoc
-
 deps: bin/gotestsum bin/golangci-lint bin/protoc bin/protoc-gen-go bin/protoc-gen-go-grpc bin/kind ## Install dev dependencies.
 
 .PHONY: test testrace testall
