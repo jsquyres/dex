@@ -1,5 +1,4 @@
-export PATH := "$(abspath bin/protoc/bin/):$(abspath bin/):${PATH}"
-export SHELL := /bin/sh env "PATH=$$PATH" /bin/sh
+export PATH := $(abspath bin/protoc/bin/):$(abspath bin/):${PATH}
 
 OS = $(shell uname | tr A-Z a-z)
 
@@ -88,12 +87,6 @@ ifeq ($(shell uname | tr A-Z a-z), linux)
 endif
 	unzip bin/protoc.zip -d bin/protoc
 	rm bin/protoc.zip
-	pwd
-	find bin/protoc/bin
-	ls -l bin/protoc/bin
-	echo JMS PATH is: $$PATH
-	echo JMS SHELL is: $$SHELL
-	env | sort
 
 bin/protoc-gen-go:
 	@mkdir -p bin
@@ -127,9 +120,6 @@ verify-go-mod: go-mod-tidy ## Check that go.mod and go.sum formatted according t
 	@git diff --exit-code
 
 ##@ Test and Lint
-
-jms:
-	@ls -l
 
 deps: bin/gotestsum bin/golangci-lint bin/protoc bin/protoc-gen-go bin/protoc-gen-go-grpc bin/kind ## Install dev dependencies.
 
