@@ -80,9 +80,7 @@ jobs:
       # It can help us determine, that the code is in the intermediate state, which should not be tested.
       # Thus, heavy jobs like creating a kind cluster and testing / linting will be skipped.
       - name: Verify
-        run: |
-          make generate-proto
-          make verify
+        run: make verify
 
       - name: Start services
         run: docker compose -f docker-compose.test.yaml up -d
