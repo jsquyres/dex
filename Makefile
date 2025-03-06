@@ -89,6 +89,10 @@ endif
 	unzip bin/protoc.zip -d bin/protoc
 	chmod +x bin/protoc/bin/protoc
 	rm bin/protoc.zip
+	pwd
+	find bin/protc/bin
+	echo JMS PATH is: $(PATH)
+	echo JMS SHELL is: $(SHELL)
 
 bin/protoc-gen-go:
 	@mkdir -p bin
