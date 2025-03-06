@@ -90,7 +90,7 @@ endif
 	chmod +x bin/protoc/bin/protoc
 	rm bin/protoc.zip
 	pwd
-	find bin/protc/bin
+	find bin/protoc/bin
 	echo JMS PATH is: $(PATH)
 	echo JMS SHELL is: $(SHELL)
 
