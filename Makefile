@@ -91,8 +91,10 @@ endif
 	rm bin/protoc.zip
 	pwd
 	find bin/protoc/bin
-	echo JMS PATH is: $(PATH)
-	echo JMS SHELL is: $(SHELL)
+	ls -l bin/protoc/bin
+	echo JMS PATH is: $$PATH
+	echo JMS SHELL is: $$SHELL
+	env | sort
 
 bin/protoc-gen-go:
 	@mkdir -p bin
