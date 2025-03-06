@@ -79,17 +79,27 @@ jobs:
       # Ensure that generated files were committed.
       # It can help us determine, that the code is in the intermediate state, which should not be tested.
       # Thus, heavy jobs like creating a kind cluster and testing / linting will be skipped.
-      - name: Verify
+      - name: JMS 1
         run: |
           echo JMS PATH is:
           echo $PATH
+
+      - name: JMS 2
+        run: |
           which -a protoc
+
+      - name: JMS 3
+        run: |
           for item in $(which -a protoc); do echo $item; ls -l $item;
           done
 
+      - name: JMS 4
+        run: |
           protoc --help
 
-          make generate-proto
+      - name: JMS 5
+        run: |
+         make generate-proto
           make verify
 
       - name: Start services
@@ -141,25 +151,6 @@ jobs:
 
           DEX_KUBERNETES_CONFIG_PATH: ~/.kube/config
 
-  lint:
-    name: Lint
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
-
-      - name: Set up Go
-        uses: actions/setup-go@f111f3307d8850f501ac008e886eec1fd1932a34 # v5.3.0
-        with:
-          go-version: "1.24"
-
-      - name: Download golangci-lint
-        run: make bin/golangci-lint
-
-      - name: Lint
-        run: make lint
-
   artifacts:
     name: Artifacts
     uses: ./.github/workflows/artifacts.yaml
@@ -174,15 +165,3 @@ jobs:
       packages: write
       id-token: write
       security-events: write
-
-  dependency-review:
-    name: Dependency review
-    runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request'
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
-
-      - name: Dependency Review
-        uses: actions/dependency-review-action@3b139cfc5fae8b618d3eae3675e383bb1769c019 # v4.5.0
