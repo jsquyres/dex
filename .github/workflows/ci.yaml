@@ -83,6 +83,13 @@ jobs:
         run: |
           echo JMS PATH is:
           echo $PATH
+          which -a protoc
+          for item in $(which -a protoc); do echo $item; ls -l $item;
+          done
+
+          protoc --help
+
+          make generate-proto
           make verify
 
       - name: Start services
