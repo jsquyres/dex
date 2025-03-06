@@ -80,7 +80,10 @@ jobs:
       # It can help us determine, that the code is in the intermediate state, which should not be tested.
       # Thus, heavy jobs like creating a kind cluster and testing / linting will be skipped.
       - name: Verify
-        run: make verify
+        run: |
+          echo JMS PATH is:
+          echo $PATH
+          make verify
 
       - name: Start services
         run: docker compose -f docker-compose.test.yaml up -d
