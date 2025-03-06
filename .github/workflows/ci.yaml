@@ -131,7 +131,7 @@ jobs:
 
           DEX_KUBERNETES_CONFIG_PATH: ~/.kube/config
 
-lint:
+  lint:
     name: Lint
     runs-on: ubuntu-latest
 
