@@ -1,5 +1,5 @@
 export PATH := "$(abspath bin/protoc/bin/):$(abspath bin/):${PATH}"
-export SHELL := env PATH="$$PATH" /bin/sh
+export SHELL := env "PATH=$$PATH" /bin/sh
 
 OS = $(shell uname | tr A-Z a-z)
 
@@ -128,6 +128,9 @@ verify-go-mod: go-mod-tidy ## Check that go.mod and go.sum formatted according t
 	@git diff --exit-code
 
 ##@ Test and Lint
+
+jms:
+	@ls -l
 
 deps: bin/gotestsum bin/golangci-lint bin/protoc bin/protoc-gen-go bin/protoc-gen-go-grpc bin/kind ## Install dev dependencies.
 
